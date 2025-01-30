@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using AmericanGirlLookup.Models;
 
 namespace AmericanGirlLookup.Data
 {
@@ -9,5 +10,6 @@ namespace AmericanGirlLookup.Data
             : base(options)
         {
         }
+        public DbSet<AmericanGirlLookup.Models.Doll> Doll { get; set; } = default!;
     }
 }
