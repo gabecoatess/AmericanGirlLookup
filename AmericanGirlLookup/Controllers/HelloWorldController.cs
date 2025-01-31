@@ -1,4 +1,5 @@
 ﻿using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AmericanGirlLookup.Controllers
@@ -13,6 +14,12 @@ namespace AmericanGirlLookup.Controllers
         public string Welcome(string name, int age)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}! You are {age} years old!");
+        }
+
+        [Authorize]
+        public string AuthorizationTest()
+        {
+            return "You are authorized!";
         }
     }
 }
