@@ -1,86 +1,30 @@
 ﻿@model IEnumerable<AmericanGirlLookup.Models.Doll>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Doll Lookup";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
+<p>Find all your favorite dolls in one place! Welcome to the Doll Lookup!</p>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DollName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RetirementDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CharacterType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Collection)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OriginalPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CurrentValue)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OwningCompany)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePath)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DollName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RetirementDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CharacterType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Collection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OriginalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrentValue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OwningCompany)
-            </td>
-            <td>
-                <img src="@item.ImagePath" />
 
-                @* Display the link as text. Executes some sort of .ToString() on type *@
-                @* @Html.DisplayFor(modelItem => item.ImagePath) *@
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="@item.ImagePath" class="card-img-top" alt="@item.DollName" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@item.DollName</h5>
+                    <p class="card-text">@item.CharacterType</p>
+
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
