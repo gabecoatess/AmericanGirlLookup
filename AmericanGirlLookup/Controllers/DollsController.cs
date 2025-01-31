@@ -54,7 +54,7 @@ namespace AmericanGirlLookup.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DollName,ReleaseDate,RetirementDate,CharacterType,Collection,OriginalPrice,CurrentValue,OwningCompany")] Doll doll)
+        public async Task<IActionResult> Create([Bind("Id,DollName,ReleaseDate,RetirementDate,CharacterType,Collection,OriginalPrice,CurrentValue,OwningCompany,ImagePath")] Doll doll)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace AmericanGirlLookup.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DollName,ReleaseDate,RetirementDate,CharacterType,Collection,OriginalPrice,CurrentValue,OwningCompany")] Doll doll)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DollName,ReleaseDate,RetirementDate,CharacterType,Collection,OriginalPrice,CurrentValue,OwningCompany,ImagePath")] Doll doll)
         {
             if (id != doll.Id)
             {

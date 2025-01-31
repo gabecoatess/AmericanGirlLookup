@@ -17,6 +17,6 @@ namespace AmericanGirlLookup.Models
         [DataType(DataType.Currency)]
         public string? CurrentValue { get; set; }
         public required string OwningCompany { get; set; }
-
+        public required string ImagePath { get; set; }
     }
 }

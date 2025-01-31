@@ -36,6 +36,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.OwningCompany)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -65,6 +68,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OwningCompany)
+            </td>
+            <td>
+                <img src="@item.ImagePath" />
+
+                @* Display the link as text. Executes some sort of .ToString() on type *@
+                @* @Html.DisplayFor(modelItem => item.ImagePath) *@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
