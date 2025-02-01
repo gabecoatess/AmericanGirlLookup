@@ -4,7 +4,7 @@ namespace AmericanGirlLookup.Models
 {
     public class Doll
     {
-        public required int Id { get; set; }
+        public int Id { get; set; }
         public required string DollName { get; set; }
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
