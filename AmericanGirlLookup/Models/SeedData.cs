@@ -8,24 +8,25 @@ namespace AmericanGirlLookup.Models
     {
         public static async Task InitializeAsync(IServiceProvider serviceProvider)
         {
+            // (RoleManager) Seed roles into database
             using (var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>())
             {
                 await SeedUserRolesAsync(roleManager);
             }
 
-            using (var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
+            // (Database Context) Seed users and dolls into database 
+            using (var databaseContext = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
+            using (var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>())
             {
-                if (!context.Users.Any())
+                await SeedUserInfoAsync(databaseContext, userManager);
+
+                // TODO: Don't skip entire default adding process just because a user created their own custom data
+                if (!databaseContext.Doll.Any())
                 {
-                    SeedUserInfo(context);
+                    SeedDollInfo(databaseContext);
                 }
 
-                if (!context.Doll.Any())
-                {
-                    SeedDollInfo(context);
-                }
-
-                await context.SaveChangesAsync();
+                await databaseContext.SaveChangesAsync();
             }
         }
 
@@ -48,10 +49,41 @@ namespace AmericanGirlLookup.Models
             }
         }
 
-        private static void SeedDollInfo(ApplicationDbContext context)
+        private static async Task SeedUserInfoAsync(ApplicationDbContext databaseContext, UserManager<IdentityUser> userManager)
+        {
+            // Spooooky plain text password!
+            string demoPassword = "DemoDummy5$";
+
+            var demoUsers = new (string Role, string Email)[]
+            {
+                ("Moderator", "john.doe@example.com"),
+                ("Moderator", "jane.doe@example.com"),
+                ("Doll Curator", "penny.tool@example.com"),
+                ("Member", "justin.case@example.com"),
+                ("Member", "russell.sprout@example.com")
+            };
+
+            foreach (var demoUser in demoUsers)
+            {
+                if (await userManager.FindByEmailAsync(demoUser.Email) != null) { continue; }
+
+                var user = new IdentityUser
+                {
+                    UserName = demoUser.Email,
+                    Email = demoUser.Email,
+                    EmailConfirmed = true,
+                    LockoutEnabled = false
+                };
+
+                await userManager.CreateAsync(user, demoPassword);
+                await userManager.AddToRoleAsync(user, demoUser.Role);
+            }
+        }
+
+        private static void SeedDollInfo(ApplicationDbContext databaseContext)
         {
             // Seeding test dolls
-            context.Doll.AddRange(
+            databaseContext.Doll.AddRange(
                 new Doll
                 {
                     DollName = "Samantha Parkington",
@@ -173,73 +205,6 @@ namespace AmericanGirlLookup.Models
                     ImagePath = "https://images.mattel.net/image/upload/w_3024,c_scale/f_auto/q_auto:low/shop-ag-prod/files/hlar0w7u1gux9ec8xksi.png?v=1729720706"
                 }
             );
-        }
-
-        private static void SeedUserInfo(ApplicationDbContext context)
-        {
-            var hasher = new PasswordHasher<IdentityUser>();
-
-            // Spooooky plain text password!
-            string demoPassword = "DemoDummy5$";
-
-            // Seeding demo users
-            context.Users.AddRange(
-                new IdentityUser
-                {
-                    Id = "c192f2fa-5db2-4976-983b-80599e617e8a",
-                    UserName = "john.doe@example.com",
-                    Email = "john.doe@example.com",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    NormalizedUserName = "JOHN.DOE@EXAMPLE.COM",
-                    NormalizedEmail = "JOHN.DOE@EXAMPLE.COM",
-                    PasswordHash = hasher.HashPassword(null, demoPassword)
-                },
-                new IdentityUser
-                {
-                    Id = "1b260f88-d355-46f9-ad21-2d3f8555845c",
-                    UserName = "jane.doe@example.com",
-                    Email = "jane.doe@example.com",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    NormalizedUserName = "JANE.DOE@EXAMPLE.COM",
-                    NormalizedEmail = "JANE.DOE@EXAMPLE.COM",
-                    PasswordHash = hasher.HashPassword(null, demoPassword)
-                },
-                new IdentityUser
-                {
-                    Id = "36608445-defd-4e83-9a71-6314278f0b2a",
-                    UserName = "penny.tool@example.com",
-                    Email = "penny.tool@example.com",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    NormalizedUserName = "PENNY.TOOL@EXAMPLE.COM",
-                    NormalizedEmail = "PENNY.TOOL@EXAMPLE.COM",
-                    PasswordHash = hasher.HashPassword(null, demoPassword)
-                },
-                new IdentityUser
-                {
-                    Id = "9fa550d0-73fe-4381-868f-90afe44ac13d",
-                    UserName = "justin.case@example.com",
-                    Email = "justin.case@example.com",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    NormalizedUserName = "JUSTIN.CASE@EXAMPLE.COM",
-                    NormalizedEmail = "JUSTIN.CASE@EXAMPLE.COM",
-                    PasswordHash = hasher.HashPassword(null, demoPassword)
-                },
-                new IdentityUser
-                {
-                    Id = "e825d9c5-33d0-4136-95e2-f0f829087126",
-                    UserName = "russell.sprout@example.com",
-                    Email = "russell.sprout@example.com",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    NormalizedUserName = "RUSSELL.SPROUT@EXAMPLE.COM",
-                    NormalizedEmail = "RUSSELL.SPROUT@EXAMPLE.COM",
-                    PasswordHash = hasher.HashPassword(null, demoPassword)
-                }
-             );
         }
     }
 }
