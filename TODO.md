@@ -12,6 +12,7 @@ Welcome to the TODO list for this repository!
 - [x] Added `TODO.md` to track project roadmap
 - [x] Add authentication/user roles
 - [x] Block actions based on user role
+- [x] Add content to README file
 
 ### In Progress
 - [ ] Create admin view of all users (grid/list with search)
@@ -23,7 +24,6 @@ Welcome to the TODO list for this repository!
 - [ ] Implement dark mode
 - [ ] Setup a GitHook to auto-deploy when pushing to master branch
 - [ ] Separate repository into branches
-- [ ] Add content to README file
 - [ ] Add search/filter options for dolls
 
 ### Maybe's
