@@ -2,6 +2,7 @@
 using AmericanGirlLookup.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AmericanGirlLookup.Controllers
 {
@@ -39,6 +40,7 @@ namespace AmericanGirlLookup.Controllers
         }
 
         // GET: Dolls/Create
+        [Authorize(Roles = "Administrator,Doll Curator")]
         public IActionResult Create()
         {
             return View();
@@ -49,6 +51,7 @@ namespace AmericanGirlLookup.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Doll Curator")]
         public async Task<IActionResult> Create([Bind("Id,DollName,ReleaseDate,RetirementDate,CharacterType,Collection,OriginalPrice,CurrentValue,OwningCompany,ImagePath")] Doll doll)
         {
             if (ModelState.IsValid)
@@ -61,6 +64,7 @@ namespace AmericanGirlLookup.Controllers
         }
 
         // GET: Dolls/Edit/5
+        [Authorize(Roles = "Administrator,Doll Curator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,6 +85,7 @@ namespace AmericanGirlLookup.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Doll Curator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,DollName,ReleaseDate,RetirementDate,CharacterType,Collection,OriginalPrice,CurrentValue,OwningCompany,ImagePath")] Doll doll)
         {
             if (id != doll.Id)
@@ -112,6 +117,7 @@ namespace AmericanGirlLookup.Controllers
         }
 
         // GET: Dolls/Delete/5
+        [Authorize(Roles = "Administrator,Doll Curator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,6 +138,7 @@ namespace AmericanGirlLookup.Controllers
         // POST: Dolls/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Doll Curator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var doll = await _context.Doll.FindAsync(id);

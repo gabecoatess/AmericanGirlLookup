@@ -11,9 +11,9 @@ Welcome to the TODO list for this repository!
 - [x] Implemented core features including viewing, editing, creating, and deleting doll entries
 - [x] Added `TODO.md` to track project roadmap
 - [x] Add authentication/user roles
+- [x] Block actions based on user role
 
 ### In Progress
-- [ ] Block actions based on user role
 - [ ] Create admin view of all users (grid/list with search)
 - [ ] Add ability to upload/host images via Amazon S3 (free tier?)
 
