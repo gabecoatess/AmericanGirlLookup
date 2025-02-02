@@ -7,4 +7,11 @@
 <header>
     <h1 class="text-danger">@ViewData["Title"]</h1>
     <p class="text-danger">You do not have access to this resource.</p>
+
+    @* There needs to be a better way than finding if the type (http://schemas.microsoft.com/ws/2008/06/identity/claims/role) ends in "role" *@
+    <h4>Your active roles are:</h4>
+    @foreach (var t in User.Claims.Where(x => x.Type.EndsWith("role")))
+    {
+        <p>@t.Value</p>
+    }
 </header>

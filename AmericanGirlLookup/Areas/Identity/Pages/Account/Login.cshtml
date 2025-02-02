@@ -47,7 +47,7 @@
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">
-        <section>
+        <section style="display: none">
             <h3>Use another service to log in.</h3>
             <hr />
             @{
@@ -74,6 +74,53 @@
                     </form>
                 }
             }
+        </section>
+
+        <section>
+            <h2 class="h4 mb-3">Demo User Accounts</h2>
+            <p class="lead">
+                Below is a list of demo user accounts with different roles that you can use to explore the application.
+                Each role has access to different parts of the site. Some functionality is limited in demo accounts.
+                To unlock full functionality as a member, please create your own account.
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>john.doe@example.com</td>
+                            <td>DemoDummy5$</td>
+                            <td>Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>jane.doe@example.com</td>
+                            <td>DemoDummy5$</td>
+                            <td>Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>penny.tool@example.com</td>
+                            <td>DemoDummy5$</td>
+                            <td>Doll Curator</td>
+                        </tr>
+                        <tr>
+                            <td>justin.case@example.com</td>
+                            <td>DemoDummy5$</td>
+                            <td>Member</td>
+                        </tr>
+                        <tr>
+                            <td>russell.sprout@example.com</td>
+                            <td>DemoDummy5$</td>
+                            <td>Member</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
 </div>
