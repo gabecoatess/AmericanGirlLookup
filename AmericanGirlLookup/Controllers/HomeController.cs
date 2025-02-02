@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using AmericanGirlLookup.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace AmericanGirlLookup.Controllers
 {

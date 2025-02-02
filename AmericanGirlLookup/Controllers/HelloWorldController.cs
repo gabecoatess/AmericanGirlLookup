@@ -1,6 +1,6 @@
-﻿using System.Text.Encodings.Web;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace AmericanGirlLookup.Controllers
 {
