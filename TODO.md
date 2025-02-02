@@ -10,13 +10,13 @@ Welcome to the TODO list for this repository!
 - [x] Hello, GitHub!
 - [x] Implemented core features including viewing, editing, creating, and deleting doll entries
 - [x] Added `TODO.md` to track project roadmap
+- [x] Add authentication/user roles
 
 ### In Progress
-- [ ] Add authentication/user roles
 - [ ] Block actions based on user role
+- [ ] Create admin view of all users (grid/list with search)
 
 ### Upcoming Tasks
-- [ ] Create admin view of all users (grid/list with search)
 - [ ] Add per-user role management (admin/moderator/user roles)
 - [ ] User disable and deletion functionality
 - [ ] Add ability to upload/host images via Amazon S3 (free tier?)
