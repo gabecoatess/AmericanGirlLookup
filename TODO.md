@@ -13,17 +13,17 @@ Welcome to the TODO list for this repository!
 - [x] Add authentication/user roles
 - [x] Block actions based on user role
 - [x] Add content to README file
+- [x] Add ability to upload/host images via Amazon S3
 
 ### In Progress
 - [ ] Create admin view of all users (grid/list with search)
-- [ ] Add ability to upload/host images via Amazon S3 (free tier?)
+- [ ] Separate repository into branches
 
 ### Upcoming Tasks
 - [ ] Add per-user role management (admin/moderator/user roles)
 - [ ] User disable and deletion functionality
 - [ ] Implement dark mode
 - [ ] Setup a GitHook to auto-deploy when pushing to master branch
-- [ ] Separate repository into branches
 - [ ] Add search/filter options for dolls
 
 ### Maybe's
