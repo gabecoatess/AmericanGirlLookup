@@ -93,8 +93,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$82",
                     CurrentValue = "$200+",
-                    OwningCompany = "Pleasant Company",
-                    ImagePath = "https://images.mattel.net/image/upload/w_2000,c_scale/f_auto/q_auto:low/shop-ag-prod/files/x0bpgxbhssyy1y4onzqq.png?v=1737671601"
+                    OwningCompany = "Pleasant Company"
                 },
                 new Doll
                 {
@@ -105,8 +104,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$82",
                     CurrentValue = "$150+",
-                    OwningCompany = "Pleasant Company",
-                    ImagePath = "https://www.americangirl.com/cdn/shop/files/amjayic1rpnqb2dheah6.png?v=1734029972"
+                    OwningCompany = "Pleasant Company"
                 },
                 new Doll
                 {
@@ -117,8 +115,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$82",
                     CurrentValue = "$300+",
-                    OwningCompany = "Pleasant Company",
-                    ImagePath = "https://www.americangirl.com/cdn/shop/files/qwhcke2rcvv6t7s1qfuv.png?v=1734029993"
+                    OwningCompany = "Pleasant Company"
                 },
                 new Doll
                 {
@@ -129,8 +126,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$82",
                     CurrentValue = "$250+",
-                    OwningCompany = "Pleasant Company",
-                    ImagePath = "https://i.ebayimg.com/images/g/bhoAAOSw--BhmXad/s-l1200.jpg"
+                    OwningCompany = "Pleasant Company"
                 },
                 new Doll
                 {
@@ -141,8 +137,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$84",
                     CurrentValue = "$110+",
-                    OwningCompany = "Pleasant Company",
-                    ImagePath = "https://www.americangirl.com/cdn/shop/files/y58rscjo0qujzyl4tkwb.png?v=1736554408"
+                    OwningCompany = "Pleasant Company"
                 },
                 new Doll
                 {
@@ -153,8 +148,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$84",
                     CurrentValue = "$110+",
-                    OwningCompany = "Pleasant Company",
-                    ImagePath = "https://www.americangirl.com/cdn/shop/files/nnrdm3isadm6jlg1mikm.png?v=1734029981"
+                    OwningCompany = "Pleasant Company"
                 },
                 new Doll
                 {
@@ -165,8 +159,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$84",
                     CurrentValue = "$110+",
-                    OwningCompany = "American Girl",
-                    ImagePath = "https://www.americangirl.com/cdn/shop/files/nvkhqqrwni3kjerhmy9p.png?v=1736965234"
+                    OwningCompany = "American Girl"
                 },
                 new Doll
                 {
@@ -177,8 +170,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$90",
                     CurrentValue = "$110+",
-                    OwningCompany = "American Girl",
-                    ImagePath = "https://images.mattel.net/image/upload/w_430,c_scale/f_auto/q_auto:low/shop-ag-prod/files/onm4tf0bp1qvlkrcwdta.png?v=1734029969"
+                    OwningCompany = "American Girl"
                 },
                 new Doll
                 {
@@ -189,8 +181,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "American Girls Collection",
                     OriginalPrice = "$95",
                     CurrentValue = "$110+",
-                    OwningCompany = "American Girl",
-                    ImagePath = "https://www.americangirl.com/cdn/shop/files/gr6pta6mwkjoxqfyd6yh_691877c5-6baf-41d9-9ac6-538d1e62a91e.png?v=1724772705"
+                    OwningCompany = "American Girl"
                 },
                 new Doll
                 {
@@ -201,8 +192,7 @@ namespace AmericanGirlLookup.Models
                     Collection = "BeForever",
                     OriginalPrice = "$115",
                     CurrentValue = "$115",
-                    OwningCompany = "American Girl",
-                    ImagePath = "https://images.mattel.net/image/upload/w_3024,c_scale/f_auto/q_auto:low/shop-ag-prod/files/hlar0w7u1gux9ec8xksi.png?v=1729720706"
+                    OwningCompany = "American Girl"
                 }
             );
         }

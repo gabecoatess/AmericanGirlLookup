@@ -3,16 +3,22 @@ using AmericanGirlLookup.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using AmericanGirlLookup.Utilities;
+using Microsoft.Extensions.Options;
 
 namespace AmericanGirlLookup.Controllers
 {
     public class DollsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly S3Utility _s3Utility;
+        private readonly S3Settings _s3Settings;
 
-        public DollsController(ApplicationDbContext context)
+        public DollsController(ApplicationDbContext context, S3Utility s3Utility, IOptions<S3Settings> s3Settings)
         {
             _context = context;
+            _s3Utility = s3Utility;
+            _s3Settings = s3Settings.Value;
         }
 
         // GET: Dolls
@@ -47,15 +53,37 @@ namespace AmericanGirlLookup.Controllers
         }
 
         // POST: Dolls/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator,Doll Curator")]
-        public async Task<IActionResult> Create([Bind("Id,DollName,ReleaseDate,RetirementDate,CharacterType,Collection,OriginalPrice,CurrentValue,OwningCompany,ImagePath")] Doll doll)
+        public async Task<IActionResult> Create([Bind("Id,DollName,ReleaseDate,RetirementDate,CharacterType,Collection,OriginalPrice,CurrentValue,OwningCompany,DollImage")] Doll doll)
         {
             if (ModelState.IsValid)
             {
+                if (doll.DollImage != null && doll.DollImage.Length > 0)
+                {
+                    var imageGuid = Guid.NewGuid();
+                    var objectKey = $"doll_images/{imageGuid}-{doll.Id}-{doll.DollName}";
+
+                    try
+                    {
+                        var imageUrl = await _s3Utility.UploadImageAsync(
+                            bucketName: _s3Settings.BucketName,
+                            objectKey: objectKey,
+                            fileStream: doll.DollImage.OpenReadStream(),
+                            contentType: doll.DollImage.ContentType
+                        );
+
+                        doll.ImageUrl = "https://" + _s3Settings.CloudFrontUrl + objectKey;
+                    }
+                    catch (Exception e)
+                    {
+                        ModelState.AddModelError("", $"Image upload failed: {e.Message}");
+
+                        return View(doll);
+                    }
+                }
+
                 _context.Add(doll);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -81,8 +109,6 @@ namespace AmericanGirlLookup.Controllers
         }
 
         // POST: Dolls/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator,Doll Curator")]

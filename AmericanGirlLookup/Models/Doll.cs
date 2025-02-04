@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AmericanGirlLookup.Models
 {
@@ -17,6 +18,9 @@ namespace AmericanGirlLookup.Models
         [DataType(DataType.Currency)]
         public string? CurrentValue { get; set; }
         public required string OwningCompany { get; set; }
-        public required string ImagePath { get; set; }
+        public string? ImageUrl { get; set; }
+
+        [NotMapped]
+        public IFormFile? DollImage { get; set; }
     }
 }

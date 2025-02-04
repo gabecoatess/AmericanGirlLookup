@@ -1,5 +1,6 @@
 using AmericanGirlLookup.Data;
 using AmericanGirlLookup.Models;
+using AmericanGirlLookup.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,8 @@ public static class Program
             .AddRoles<IdentityRole>() // Registers role-based authorization services
             .AddEntityFrameworkStores<ApplicationDbContext>();
         builder.Services.AddControllersWithViews();
+        builder.Services.Configure<S3Settings>(builder.Configuration.GetSection("S3Settings"));
+        builder.Services.AddSingleton<S3Utility>();
 
         // Identity Service
         builder.Services.Configure<IdentityOptions>(options =>
