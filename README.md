@@ -60,6 +60,7 @@ The American Girl Lookup application is designed to provide a user-friendly inte
 - **Bootstrap**: Responsive design and styling.
 - **Entity Framework**: Database interactions and ORM.
 - **AWS S3**: Storing and managing images.
+- **AWS CloudFront**: CDN for retrieving doll images.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
